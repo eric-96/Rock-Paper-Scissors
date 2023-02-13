@@ -1,0 +1,33 @@
+*{
+    background: #1f1f1f;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: xx-large;
+    color: white;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.container{
+    display: grid;
+    place-items: center;
+    padding-top: 300px;
+}
+
+.h1{
+    padding-bottom: 20px;
+    font-size: 2rem;
+}
+
+.button{
+    padding: 10px 10px;
+    background: #ffffff;
+    color: #1f1f1f;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.button:hover{
+    background: #1f1f1f;
+    color: white;
+}
