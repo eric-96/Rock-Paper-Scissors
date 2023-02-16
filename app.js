@@ -1,59 +1,80 @@
-// this variable defines the 03 available choices inside the game.
 const choices = ['rock', 'paper', 'scissors']
+let playerScore = 0
+let computerScore = 0
 
-// this function starts the game when the site is loaded or reloaded
-function game(){
-    round();
-}
 
-// this function calls both the getComputerChoice function and the playerSelection function, than calls the checkWin function to see who wins, then displays it on the console.
 function round(){
-
+    
     let computerSelection = getComputerChoice();
     let playerSelection = getPlayerChoice();
-    console.log('You chose: ' + playerSelection);
-    console.log('Computer chose: ' + computerSelection);
-
+    console.log('Player: ' + playerSelection);
+    console.log('Computer: ' + computerSelection);
+    
     const winner = checkWin(playerSelection, computerSelection);
     console.log(winner);   
     console.log('---------------------------------------------------------');
 }
 
-// this funcion gets a random item from the choices array. this function is called inside the 'round function'
+
 function getComputerChoice(){
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-// this function pops up a prompt asking for the player's choice. it contains another function called validadeChoice which filters valid from invalid inputs.
+
 function getPlayerChoice(){
     let input = prompt('Type rock, paper or scissors to begin the round');
     input = input.toLowerCase();
-    validateChoice(input);
+    while(validateChoice(input) == false){
+        alert('You spelled incorrectly.');
+        return getPlayerChoice();
+    }
+
     return input;
+    
 }
 
-// this function checks if player typed a valid option and displays an alert in case of a typo. this function is called inside getPlayerChoice function.
+
 function validateChoice(choice){
-    if(choices.includes(choice))
-    { }
-    else{
-        alert('Spelling might be incorrect. Try again.');
+    if(choices.includes(choice)){
+         return true}
+    else{ 
+        return false
     }
 } 
 
-// this function runs the player's choice against the computer's and determines who's the winner of the round.
-function checkWin(Player, Computer){
-    if(Player === Computer){
+
+function checkWin(playerSelection, computerSelection){
+    if(playerSelection === computerSelection){
         return 'It\'s a tie!'
     }
-    else if
-    ((Player === 'rock' && Computer === 'paper') || (Player === 'paper' && Computer === 'scissors') || (Player === 'scissors' && Computer === 'rock'))
+    else if(
+        (playerSelection === 'rock' && computerSelection === 'paper') ||
+        (playerSelection === 'paper' && computerSelection === 'scissors') ||
+        (playerSelection === 'scissors' && computerSelection === 'rock')
+        )
         {
-        return 'Oh no, you lost.'
+            computerScore++
+            return 'Computer wins'
+        }
+        else{
+            playerScore++
+            return 'Player wins'
+    }
+}
+function game(){
+    for (let i = 0; i < 5; i++) {    
+    round();
+    }
+    if (playerScore > computerScore){
+        console.log('You beat the computer!') 
+    }
+    else if (playerScore === computerScore){
+        console.log('It\'s a tie!')
     }
     else{
-        return 'You won!'
+        console.log('The computer won!')
     }
+
 }
 
 
