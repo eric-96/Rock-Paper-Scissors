@@ -4,7 +4,9 @@
     const body = document.querySelector('body');
 
     toggleButton.addEventListener('click', function() {
-        body.classList.toggle('dark');
+    body.classList.toggle('dark');
+
+    
     });
 
     // GAME
@@ -19,52 +21,72 @@
             const p1 = button.dataset.selection;
             const p2 = getComputerChoice();
             roundCheck(p1, p2);
-            console.log('p1 = ' + p1)
-            console.log('p2 = ' + p2)
             applyRules(p1Score, p2Score);
+            updateScoreboard(p1Score, p2Score, button.textContent, p2);
           });
         })}
 
 
     function getComputerChoice(){
-        const choices = ['rock', 'paper', 'scissors'];
+        const choices = ['✊', '✋', '✌'];
         return choices[Math.floor(Math.random() * choices.length)];
     } 
     
+    const p1ScoreElem = document.querySelector('#p1-score');
+    const p2ScoreElem = document.querySelector('#p2-score');
+    
     const roundCheck = (p1, p2) => {
-
-        const rules = {rock: "scissors", paper: "rock", scissors: "paper"};
-        if (p2 === rules[p1]) {
+        
+        const rules = {rock: "✌", paper: "✊", scissors: "✋"};
+            
+            if (p2 === rules[p1]) {
             p1Score++
-            console.log("round winner: Player 1");   
+            p1ScoreElem.textContent = p1Score;  
             if (p1Score === 3) {
                 endGameP1win();
+            }}
+            else if (p1 === p2) {
+            return;
             }
-            return "Player 1";
-        }
-        else {
+
+            else {
             p2Score++
-          console.log("round winner: Computer");
-          if (p1Score === 3) {
+            p2ScoreElem.textContent = p2Score;
+            if (p2Score === 3) {
             endGameP2win();
-        }
-        return "Computer";
+         }
+         }
+    };
+            function updateScoreboard(p1Score, p2Score, p1, p2) {
+                p1ScoreElem.textContent = `${p1Score}`;
+                p2ScoreElem.textContent = `${p2Score}`;
+                const h2 = document.querySelector('h2')
+                h2.textContent = `You: ${p1} | Computer: ${p2}`
+                
+            }
+            
 
-        }
-      };
-    
-    
-    function applyRules(roundWinner) {
-        console.log('round winner:', roundWinner);
-        console.log(`Player 1: ${p1Score}, Computer: ${p2Score}`);
-    }
+        function applyRules(roundWinner) {
+            console.log('round winner:', roundWinner);
+            console.log(`Player: ${p1Score}, Computer: ${p2Score}`);
+            }
 
+        function restartRounds() {
+            p1Score = 0;
+            p2Score = 0;
+            p1ScoreElem.textContent = p1Score;
+            p2ScoreElem.textContent = p2Score;
+            const card = document.querySelector('.card');
+            card.remove();
+            }
+            
     function endGameP1win() {
-        p1Score = 0
-        p2Score = 0
         const card = document.createElement('div');
         card.classList.add('card');
         card.classList.add('dark');
+
+        const left = document.createElement('div');
+        left.classList.add('newDiv')
 
         const message = document.createElement('p');
         message.textContent = 'You beat the computer!';
@@ -74,24 +96,28 @@
         replay.classList.add('replay');
         replay.textContent = 'Start Over';
         replay.classList.add('dark');
+        replay.addEventListener('click', restartRounds);
         
 
         const image = document.createElement('img');
-        image.src = 'Rock-Paper-Scissors/HaroldHappy.jpg';
+        image.src = 'HaroldHappy.jpg';
 
-        card.appendChild(message);
-        card.appendChild(replay);
+        left.appendChild(message);
+        left.appendChild(replay);
+        card.appendChild(left);
         card.appendChild(image);
+        
 
         body.appendChild(card);
     }   
 
     function endGameP2win() {
-        p1Score = 0
-        p2Score = 0
         const card = document.createElement('div');
         card.classList.add('card');
         card.classList.add('dark');
+
+        const left = document.createElement('div');
+        left.classList.add('newDiv')
         
         const message = document.createElement('p');
         message.textContent = 'The computer beat your ass';
@@ -101,16 +127,20 @@
         replay.classList.add('replay');
         replay.textContent = 'Start Over';
         replay.classList.add('dark');
+        replay.addEventListener('click', restartRounds);
         
         const image = document.createElement('img');
-        image.src = 'Rock-Paper-Scissors/HaroldSad.jpg';
+        image.src = 'HaroldSad.jpg';
         
-        card.appendChild(message);
-        card.appendChild(replay);
+        left.appendChild(message);
+        left.appendChild(replay);
+        card.appendChild(left);
         card.appendChild(image);
         
         body.appendChild(card);
     }
+
+
 
     startOneRound();
 

@@ -1,2 +1,3 @@
 # Rock-Paper-Scissors
-This is a simple Rock Paper Scissors game made with Javascript. It is an exercise for the Odin Project. This game will display all info inside the console, so make sure to press | on windows: ctrl shift J | on mac: cmd option J | before starting the game.
+In this Rock Paper Scissors game, I added an entire UI and interactive buttons to give a proper good game experience to the player.
+Try winning and losing a game to see a surprise.
