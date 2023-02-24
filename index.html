@@ -8,14 +8,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="header">
+        <button class="theme-toggle">
+            <span class="icon" id="sun-icon">☀️</span>
+            <span class="icon" id="moon-icon">🌙</span>
+        </button>
+    </div>
+    
+    <div class="main-container">
+    
+    <div class="buttons-container">
 
-   <h1 class="h1">ROCK, PAPER, SCISSORS</h1>
-   <button class="button" onclick = 'game()'>GO</button>
-   <p1>This is a <span>console version</span> of rock paper scissors. To open the console on<br> 
-        <span>Windows:</span> press ctrl + shift + J &nbsp &nbsp &nbsp &nbsp || &nbsp &nbsp &nbsp &nbsp
-        <span>Mac:</span> press cmd + option + J </p1>
-   
+        <button class="button" data-selection="rock">✊</button>
+        <button class="button" data-selection="paper">✋</button>
+        <button class="button" data-selection="scissors">✌</button>
+
+
+    </div>
     </div>
 
     <script src="app.js"></script>    
