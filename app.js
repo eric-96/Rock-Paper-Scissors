@@ -36,51 +36,52 @@
     const p2ScoreElem = document.querySelector('#p2-score');
     
     const roundCheck = (p1, p2) => {
-        
-        const rules = {rock: "✌", paper: "✊", scissors: "✋"};
-            
-            if (p2 === rules[p1]) {
-            p1Score++
-            p1ScoreElem.textContent = p1Score;  
-            if (p1Score === 3) {
-                endGameP1win();
-            }}
-            else if (p1 === p2) {
-            return;
-            }
+        const rules = { rock: "✌", paper: "✊", scissors: "✋" };
+        const ruleConvert = { rock: "✊", paper: "✋", scissors: "✌" };
+      
+        if (p2 === rules[p1]) {
+          p1Score++;
+          p1ScoreElem.textContent = p1Score;
+          if (p1Score === 3) {
+            endGameP1win();
+          }
+        } else if ( ruleConvert[p1] ===p2) {
 
-            else {
-            p2Score++
-            p2ScoreElem.textContent = p2Score;
-            if (p2Score === 3) {
+        } else {
+          p2Score++;
+          p2ScoreElem.textContent = p2Score;
+          if (p2Score === 3) {
             endGameP2win();
-         }
-         }
+          }
+        }
     };
-            function updateScoreboard(p1Score, p2Score, p1, p2) {
-                p1ScoreElem.textContent = `${p1Score}`;
-                p2ScoreElem.textContent = `${p2Score}`;
-                const h2 = document.querySelector('h2')
-                h2.textContent = `You: ${p1} | Computer: ${p2}`
-                
-            }
-            
+    
+    function updateScoreboard(p1Score, p2Score, p1, p2) {
+        p1ScoreElem.textContent = `${p1Score}`;
+        p2ScoreElem.textContent = `${p2Score}`;
+        const h2 = document.querySelector('h2')
+        h2.textContent = `You: ${p1} | Computer: ${p2}`
+        
+    }
+    
 
-        function applyRules(roundWinner) {
-            console.log('round winner:', roundWinner);
-            console.log(`Player: ${p1Score}, Computer: ${p2Score}`);
-            }
+    function applyRules(roundWinner) {
+        console.log('round winner:', roundWinner);
+        console.log(`Player: ${p1Score}, Computer: ${p2Score}`);
+        }
 
-        function restartRounds() {
-            p1Score = 0;
-            p2Score = 0;
-            p1ScoreElem.textContent = p1Score;
-            p2ScoreElem.textContent = p2Score;
-            const card = document.querySelector('.card');
-            card.remove();
-            }
+    function restartRounds() {
+        p1Score = 0;
+        p2Score = 0;
+        p1ScoreElem.textContent = p1Score;
+        p2ScoreElem.textContent = p2Score;
+        const card = document.querySelector('.card');
+        card.remove();
+        }
             
-    function endGameP1win() {
+     // End-game card UI
+
+     function endGameP1win() {
         const card = document.createElement('div');
         card.classList.add('card');
         card.classList.add('dark');
