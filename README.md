@@ -9,6 +9,7 @@ Rock Paper Scissors provides the following features:
 
 - Play against the computer.
 - User-friendly UI with interactive buttons.
+- **Dark Mode**
 - **Surprise when winning or losing a game.**
 
 ## Usage
