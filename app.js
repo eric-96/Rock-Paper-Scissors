@@ -101,7 +101,7 @@
         
 
         const image = document.createElement('img');
-        image.src = 'HaroldHappy.jpg';
+        image.src = 'images/HaroldHappy.jpg';
 
         left.appendChild(message);
         left.appendChild(replay);
@@ -131,7 +131,7 @@
         replay.addEventListener('click', restartRounds);
         
         const image = document.createElement('img');
-        image.src = 'HaroldSad.jpg';
+        image.src = 'images/HaroldSad.jpg';
         
         left.appendChild(message);
         left.appendChild(replay);
