@@ -217,4 +217,12 @@
     margin: auto;
   }
   
-    
+  footer {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+  }
+  .fa-github {
+    font-size: 25px;
+    color: #242424;
+  }
